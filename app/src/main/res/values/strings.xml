@@ -20,6 +20,9 @@
     <string name="sent">Sent</string>
     <string name="uptime">Uptime</string>
 
+    <!-- Notification -->
+    <string name="notification_channel_description">Shows the current connection status and statistics</string>
+
     <!-- Preferences -->
     <string name="general_settings">General Settings</string>
     <string name="auto_connect">Auto Connect</string>
