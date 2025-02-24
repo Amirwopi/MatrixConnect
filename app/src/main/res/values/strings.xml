@@ -15,12 +15,26 @@
     <string name="add_server">Add Server</string>
     <string name="add_server_not_implemented">Add server functionality is not yet implemented.</string>
     <string name="ok">OK</string>
-    
-    <!-- New strings for statistics -->
     <string name="statistics">Statistics</string>
     <string name="received">Received</string>
     <string name="sent">Sent</string>
     <string name="uptime">Uptime</string>
-    <string name="notification_channel_description">test</string>
-    <string name="notification_channel_name">test2</string>
+
+    <!-- Preferences -->
+    <string name="general_settings">General Settings</string>
+    <string name="auto_connect">Auto Connect</string>
+    <string name="auto_connect_summary">Automatically connect to the last used server on app start</string>
+    <string name="kill_switch">Kill Switch</string>
+    <string name="kill_switch_summary">Block all internet traffic if the VPN connection drops</string>
+    <string name="stealth_mode">Stealth Mode</string>
+    <string name="stealth_mode_summary">Hide app icon and use a generic name for notifications</string>
+    <string name="appearance">Appearance</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="dark_mode_summary">Use dark theme throughout the app</string>
+    <string name="notifications">Notifications</string>
+    <string name="show_notifications">Show Notifications</string>
+    <string name="show_notifications_summary">Display notifications for connection status and events</string>
+    <string name="data_usage">Data Usage</string>
+    <string name="reset_data_usage">Reset Data Usage</string>
+    <string name="reset_data_usage_summary">Reset all data usage statistics</string>
 </resources>

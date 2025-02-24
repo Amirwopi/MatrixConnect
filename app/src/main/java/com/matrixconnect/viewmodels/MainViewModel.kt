@@ -1,35 +1,25 @@
 package com.matrixconnect.viewmodels
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.matrixconnect.data.AppDatabase
 import com.matrixconnect.data.entities.ConnectionHistory
 import com.matrixconnect.data.entities.ServerConfig
-import com.matrixconnect.utils.PreferenceManager
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.text.DecimalFormat
+import java.util.concurrent.TimeUnit
 
-data class ConnectionStats(
-    val bytesReceived: Long = 0,
-    val bytesSent: Long = 0,
-    val uptime: Long = 0,
-    val status: ConnectionStatus = ConnectionStatus.DISCONNECTED
-)
+class MainViewModel(application: Application) : AndroidViewModel(application) {
+    private val database = AppDatabase.getInstance(application)
+    private val serverConfigDao = database.serverConfigDao()
+    private val connectionHistoryDao = database.connectionHistoryDao()
 
-enum class ConnectionStatus {
-    DISCONNECTED,
-    CONNECTING,
-    CONNECTED,
-    ERROR
-}
-
-class MainViewModel : ViewModel() {
     private val _selectedServer = MutableLiveData<ServerConfig?>()
     val selectedServer: LiveData<ServerConfig?> = _selectedServer
 
@@ -51,18 +41,15 @@ class MainViewModel : ViewModel() {
 
     private fun loadLastServer() {
         viewModelScope.launch(Dispatchers.IO) {
-            val serverId = PreferenceManager.getInstance().selectedServer?.toLongOrNull()
-            if (serverId != null) {
-                _selectedServer.postValue(
-                    AppDatabase.getInstance().serverConfigDao().getServerConfigById(serverId)
-                )
+            val lastConnection = connectionHistoryDao.getLastConnection()
+            lastConnection?.let { connection ->
+                _selectedServer.postValue(serverConfigDao.getServerConfigById(connection.serverId))
             }
         }
     }
 
     fun selectServer(server: ServerConfig) {
         viewModelScope.launch(Dispatchers.IO) {
-            PreferenceManager.getInstance().selectedServer = server.id.toString()
             _selectedServer.postValue(server)
         }
     }
@@ -86,10 +73,28 @@ class MainViewModel : ViewModel() {
 
     fun loadConnectionHistory(serverId: Long) {
         viewModelScope.launch(Dispatchers.IO) {
-            _connectionHistory.value = AppDatabase.getInstance()
-                .connectionHistoryDao()
-                .getConnectionHistoryByServerId(serverId)
+            _connectionHistory.value = connectionHistoryDao.getConnectionHistoryByServerId(serverId)
         }
+    }
+
+    fun getAllServers() = viewModelScope.launch(Dispatchers.IO) {
+        serverConfigDao.getAllServerConfigs()
+    }
+
+    fun addServer(serverConfig: ServerConfig) = viewModelScope.launch(Dispatchers.IO) {
+        serverConfigDao.insert(serverConfig)
+    }
+
+    fun updateServer(serverConfig: ServerConfig) = viewModelScope.launch(Dispatchers.IO) {
+        serverConfigDao.update(serverConfig)
+    }
+
+    fun deleteServer(serverConfig: ServerConfig) = viewModelScope.launch(Dispatchers.IO) {
+        serverConfigDao.delete(serverConfig)
+    }
+
+    fun addConnectionHistory(connectionHistory: ConnectionHistory) = viewModelScope.launch(Dispatchers.IO) {
+        connectionHistoryDao.insert(connectionHistory)
     }
 
     fun formatBytes(bytes: Long): String {
@@ -104,11 +109,10 @@ class MainViewModel : ViewModel() {
     }
 
     fun formatUptime(milliseconds: Long): String {
-        val seconds = milliseconds / 1000
-        val hours = seconds / 3600
-        val minutes = (seconds % 3600) / 60
-        val remainingSeconds = seconds % 60
-        return String.format("%02d:%02d:%02d", hours, minutes, remainingSeconds)
+        return String.format("%02d:%02d:%02d",
+            TimeUnit.MILLISECONDS.toHours(milliseconds),
+            TimeUnit.MILLISECONDS.toMinutes(milliseconds) % TimeUnit.HOURS.toMinutes(1),
+            TimeUnit.MILLISECONDS.toSeconds(milliseconds) % TimeUnit.MINUTES.toSeconds(1))
     }
 
     fun clearError() {
@@ -117,7 +121,6 @@ class MainViewModel : ViewModel() {
 
     private fun startStatsUpdates() {
         viewModelScope.launch(Dispatchers.Default) {
-            // Update uptime every second when connected
             while (true) {
                 if (_connectionStats.value.status == ConnectionStatus.CONNECTED) {
                     _connectionStats.value = _connectionStats.value.copy(
@@ -128,4 +131,18 @@ class MainViewModel : ViewModel() {
             }
         }
     }
+}
+
+data class ConnectionStats(
+    val bytesReceived: Long = 0,
+    val bytesSent: Long = 0,
+    val uptime: Long = 0,
+    val status: ConnectionStatus = ConnectionStatus.DISCONNECTED
+)
+
+enum class ConnectionStatus {
+    DISCONNECTED,
+    CONNECTING,
+    CONNECTED,
+    ERROR
 }
