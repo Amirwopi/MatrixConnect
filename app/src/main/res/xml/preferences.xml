@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="@string/general_settings"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            android:key="auto_connect"
+            android:title="@string/auto_connect"
+            android:summary="@string/auto_connect_summary"
+            android:defaultValue="false"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            android:key="kill_switch"
+            android:title="@string/kill_switch"
+            android:summary="@string/kill_switch_summary"
+            android:defaultValue="true"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            android:key="stealth_mode"
+            android:title="@string/stealth_mode"
+            android:summary="@string/stealth_mode_summary"
+            android:defaultValue="false"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/appearance"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            android:key="dark_mode"
+            android:title="@string/dark_mode"
+            android:summary="@string/dark_mode_summary"
+            android:defaultValue="false"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/notifications"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            android:key="notification_enabled"
+            android:title="@string/show_notifications"
+            android:summary="@string/show_notifications_summary"
+            android:defaultValue="true"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/data_usage"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:key="reset_data_usage"
+            android:title="@string/reset_data_usage"
+            android:summary="@string/reset_data_usage_summary"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

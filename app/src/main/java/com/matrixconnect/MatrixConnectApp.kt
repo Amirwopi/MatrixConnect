@@ -5,7 +5,6 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
 import androidx.work.Configuration
-import androidx.work.WorkManager
 import com.matrixconnect.data.AppDatabase
 import com.matrixconnect.utils.PreferenceManager
 
@@ -31,7 +30,7 @@ class MatrixConnectApp : Application(), Configuration.Provider {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 NOTIFICATION_CHANNEL_ID,
-                getString(R.string.notification_channel_name),
+                getString(R.string.app_name),
                 NotificationManager.IMPORTANCE_LOW
             ).apply {
                 description = getString(R.string.notification_channel_description)
