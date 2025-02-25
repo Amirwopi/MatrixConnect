@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/loading_sta"
-    android:layout_width="393dp"
-    android:layout_height="852dp"
-    android:clipToOutline="true"
-    android:background="@drawable/loading_sta">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/loading_sta"
+    android:clipToOutline="true">
 
     <!-- Status Bar -->
 
@@ -16,7 +15,7 @@
         android:layout_height="300dp"
         android:layout_marginStart="47dp"
         android:layout_marginTop="89dp"
-        android:src="@drawable/ic_shield"/>
+        android:src="@drawable/ic_shield" />
 
     <!-- Logo -->
     <ImageView
@@ -26,7 +25,7 @@
         android:layout_marginStart="168dp"
         android:layout_marginTop="195dp"
         android:rotation="-8.08"
-        android:src="@drawable/ic_logo"/>
+        android:src="@drawable/ic_logo" />
 
     <!-- App Title -->
     <TextView
@@ -35,11 +34,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="69dp"
         android:layout_marginTop="440dp"
+        android:fontFamily="sans-serif"
         android:text="@string/app_title"
         android:textColor="#FFFFFF"
         android:textSize="40sp"
-        android:textStyle="bold"
-        android:fontFamily="sans-serif"/>
+        android:textStyle="bold" />
 
     <!-- Version -->
     <TextView
@@ -48,10 +47,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="162dp"
         android:layout_marginTop="500dp"
+        android:fontFamily="sans-serif-medium"
         android:text="@string/app_version"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:fontFamily="sans-serif-medium"/>
+        android:textSize="20sp" />
 
     <!-- Slogan -->
     <TextView
@@ -59,32 +58,32 @@
         android:layout_width="283dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="700dp"
+        android:layout_marginTop="600dp"
+        android:fontFamily="sans-serif-medium"
         android:text="@string/app_slogan"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
         android:textAlignment="center"
-        android:fontFamily="sans-serif-medium"/>
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
 
     <!-- Loading Progress Bars -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="700dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginTop="806dp"
         android:orientation="vertical">
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1.5dp"
-            android:background="#F9F8F4"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:background="#F9F8F4" />
 
         <View
             android:layout_width="345dp"
             android:layout_height="1.5dp"
-            android:background="#CFF7D3"/>
+            android:background="#CFF7D3" />
     </LinearLayout>
 
 </RelativeLayout>

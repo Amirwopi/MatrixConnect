@@ -11,4 +11,21 @@
     <string name="step1_subheading">مورد اعتماد بیش از 1 میلیون کاربر</string>
     <string name="step1_next">بعدی</string>
     <string name="step1_skip">رد کردن</string>
+
+    <!-- Loading Step 2 Strings -->
+    <string name="step2_heading">رمزگذاری جدید و ایمن مخصوص ایران</string>
+    <string name="step2_subheading">بدون هیچ نشتی اطلاعات امن</string>
+    <string name="step2_next">بعدی</string>
+    <string name="step2_skip">رد کردن</string>
+
+    <!-- Loading Step 3 Strings -->
+    <string name="step3_heading">پوشش جهانی سرور</string>
+    <string name="step3_subheading">پشتیبانی از بیش 100 سرور در سراسر جهان</string>
+    <string name="step3_next">بعدی</string>
+    <string name="step3_skip">رد کردن</string>
+
+    <!-- Loading Done Strings -->
+    <string name="done_heading">پشتیبانی 24/7</string>
+    <string name="done_subheading">بدون هیچ قطعی</string>
+    <string name="done_start">شروع !</string>
 </resources>

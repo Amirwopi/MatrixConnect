@@ -1,48 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/loading_step1"
+    android:id="@+id/loading_step3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#292929"
     android:clipToOutline="true">
 
-    <!-- Trophy Cup Icon -->
+    <!-- Shield Network Icon -->
     <ImageView
-        android:id="@+id/trophy_cup"
+        android:id="@+id/shield_network"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginStart="47dp"
         android:layout_marginTop="109dp"
-        android:src="@drawable/ic_trophy_cup" />
+        android:src="@drawable/ic_shield_network" />
 
     <!-- Content Section -->
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="272dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="450dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="420dp"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:alpha="0.8"
+            android:layout_marginStart="43dp"
             android:fontFamily="sans-serif"
             android:letterSpacing="0.05"
-            android:text="@string/step1_heading"
-            android:textColor="#5FE39D"
+            android:text="@string/step3_heading"
+            android:textColor="#60E39D"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="52dp"
             android:layout_marginTop="36dp"
-            android:alpha="0.8"
             android:fontFamily="sans-serif"
-            android:text="@string/step1_subheading"
-            android:textColor="#5FE39D"
+            android:text="@string/step3_subheading"
+            android:textAlignment="center"
+            android:textColor="#60E39D"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -50,8 +49,8 @@
     <LinearLayout
         android:layout_width="345dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="580dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="550dp"
         android:orientation="vertical">
 
         <!-- Progress Indicators -->
@@ -63,25 +62,25 @@
             android:orientation="horizontal">
 
             <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="8dp"
+                android:background="#DBD6CE" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="8dp"
+                android:background="#DBD6CE" />
+
+            <View
                 android:layout_width="30dp"
                 android:layout_height="10dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="8dp"
                 android:background="#14AE5C" />
-
-            <View
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="8dp"
-                android:background="#DBD6CE" />
-
-            <View
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="8dp"
-                android:background="#DBD6CE" />
 
             <View
                 android:layout_width="10dp"
@@ -97,7 +96,7 @@
             android:layout_height="48dp"
             android:layout_marginBottom="13dp"
             android:background="@drawable/button_primary"
-            android:text="@string/step1_next"
+            android:text="@string/step3_next"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -108,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@android:color/transparent"
-            android:text="@string/step1_skip"
+            android:text="@string/step3_skip"
             android:textColor="#DBD6CE"
             android:textSize="16sp" />
     </LinearLayout>

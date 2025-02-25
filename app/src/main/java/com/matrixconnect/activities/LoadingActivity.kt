@@ -13,7 +13,10 @@ class LoadingActivity : AppCompatActivity() {
     private var currentScreen = 0
     private val screens = arrayOf(
         R.layout.activity_loading_start,
-        R.layout.activity_loading_step1
+        R.layout.activity_loading_step1,
+        R.layout.activity_loading_step2,
+        R.layout.activity_loading_step3,
+        R.layout.activity_loading_done
     )
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +34,7 @@ class LoadingActivity : AppCompatActivity() {
                     currentScreen++
                     showLoadingScreen()
                 }, LOADING_START_DELAY)
-            } else {
+            } else if (currentScreen < screens.size - 1) {
                 // Set up button click listeners for step screens
                 findViewById<View>(R.id.btn_next)?.setOnClickListener {
                     currentScreen++
@@ -39,6 +42,11 @@ class LoadingActivity : AppCompatActivity() {
                 }
                 
                 findViewById<View>(R.id.btn_skip)?.setOnClickListener {
+                    navigateToMain()
+                }
+            } else {
+                // Set up start button click listener for final screen
+                findViewById<View>(R.id.btn_start)?.setOnClickListener {
                     navigateToMain()
                 }
             }
