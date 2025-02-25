@@ -22,7 +22,6 @@ sealed class ProxyException(message: String) : Exception(message) {
     class AuthenticationFailed : ProxyException("Authentication failed")
     class ConnectionFailed : ProxyException("Connection failed")
     class InvalidProtocolData : ProxyException("Invalid protocol data")
-    class UnsupportedCommand : ProxyException("Unsupported command")
     class UnsupportedAddressType : ProxyException("Unsupported address type")
 }
 
