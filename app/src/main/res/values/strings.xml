@@ -45,4 +45,8 @@
     <string name="reset_data_usage_summary">Reset all data usage statistics</string>
     <string name="no_servers_available">سروری موجود نیست</string>
     <string name="error_loading_servers">خطا در لود کردن سرور ها</string>
+    <string name="boost_server">سریعترین سرور</string>
+    <string name="best_ct">بهترین منطقه</string>
+    <string name="cheng_ct">تغییر منطقه</string>
+    <string name="but_connect">برای وصل شدن لمس کنید</string>
 </resources>

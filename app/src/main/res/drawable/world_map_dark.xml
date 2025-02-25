@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="393dp"
+    android:height="532dp"
+    android:viewportWidth="393"
+    android:viewportHeight="532">
+
+    <path
+        android:strokeColor="#14AE5C"
+        android:strokeWidth="1"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M0,0 L393,0 L393,532 L0,532 Z"/>
+
+    <!-- World map lines in green -->
+    <path
+        android:strokeColor="#14AE5C"
+        android:strokeWidth="0.5"
+        android:strokeAlpha="0.3"
+        android:pathData="M196.5,50 C300,50 350,150 350,266 C350,382 300,482 196.5,482 C93,482 43,382 43,266 C43,150 93,50 196.5,50 Z"/>
+
+    <!-- Additional map detail lines -->
+    <path
+        android:strokeColor="#14AE5C"
+        android:strokeWidth="0.5"
+        android:strokeAlpha="0.2"
+        android:pathData="M43,266 L350,266 M196.5,50 L196.5,482"/>
+
+</vector>
