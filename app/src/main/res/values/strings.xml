@@ -22,7 +22,6 @@
     <string name="no_servers_found">هیچ سروری یافت نشد</string>
     <string name="no_servers">سروری وجود ندارد</string>
 
-
     <!-- Notification -->
     <string name="notification_channel_description">Shows the current connection status and statistics</string>
 
@@ -48,5 +47,12 @@
     <string name="boost_server">سریعترین سرور</string>
     <string name="best_ct">بهترین منطقه</string>
     <string name="cheng_ct">تغییر منطقه</string>
-    <string name="but_connect">برای وصل شدن لمس کنید</string>
+    <string name="connect_button_text">برای وصل شدن لمس کنید</string>
+    <string name="power_icon_desc">Power button icon</string>
+    <string name="arrow_up_desc">Arrow pointing up</string>
+    <string name="map_icon_desc">Map icon</string>
+    <string name="notification_button_desc">Notification button</string>
+    <string name="menu_button_desc">Menu button</string>
+    <string name="todo">TODO</string>
+    <string name="but_connect">متصل</string>
 </resources>
