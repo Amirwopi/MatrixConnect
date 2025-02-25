@@ -7,7 +7,7 @@ interface ProxyProtocol {
     fun connect(host: String, port: Int): ByteArray
     fun processResponse(data: ByteArray): Boolean
     fun isConnected(): Boolean
-    fun getState(): ProxyState
+    val state: ProxyState
 }
 
 enum class ProxyState {
@@ -27,11 +27,9 @@ sealed class ProxyException(message: String) : Exception(message) {
 }
 
 abstract class BaseProxyProtocol : ProxyProtocol {
-    protected var state = ProxyState.INITIAL
+    override var state = ProxyState.INITIAL
     
     override fun isConnected(): Boolean = state == ProxyState.CONNECTED
-    
-    override fun getState(): ProxyState = state
     
     protected fun ByteArray.toHexString(): String = joinToString("") { "%02x".format(it) }
     

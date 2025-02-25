@@ -22,7 +22,6 @@ interface CryptoProvider {
 }
 
 sealed class CryptoException(message: String) : Exception(message) {
-    class InvalidKey : CryptoException("Invalid key")
     class EncryptionFailed : CryptoException("Encryption failed")
     class DecryptionFailed : CryptoException("Decryption failed")
 }
@@ -34,15 +33,19 @@ abstract class BaseCryptoProvider : CryptoProvider {
         }
     }
 
-    protected fun deriveKey(key: String, keySize: Int): ByteArray {
+    companion object {
+        private const val KEY_SIZE_BYTES = 32  // 256 bits
+    }
+
+    protected fun deriveKey(key: String): ByteArray {
         val digest = java.security.MessageDigest.getInstance("SHA-256")
         val hashedKey = digest.digest(key.toByteArray())
-        return hashedKey.copyOf(keySize)
+        return hashedKey.copyOf(KEY_SIZE_BYTES)
     }
 }
 
 class AESCryptoProvider(private val key: String) : BaseCryptoProvider() {
-    private val keySpec = SecretKeySpec(deriveKey(key, 32), "AES")
+    private val keySpec = SecretKeySpec(deriveKey(key), "AES")
 
     override fun encrypt(data: ByteArray): ByteArray {
         return try {
@@ -78,7 +81,7 @@ class AESCryptoProvider(private val key: String) : BaseCryptoProvider() {
 }
 
 class ChaCha20CryptoProvider(private val key: String) : BaseCryptoProvider() {
-    private val keyBytes = deriveKey(key, 32)
+    private val keyBytes = deriveKey(key)
 
     override fun encrypt(data: ByteArray): ByteArray {
         return try {
@@ -116,7 +119,7 @@ class ChaCha20CryptoProvider(private val key: String) : BaseCryptoProvider() {
 }
 
 class Salsa20CryptoProvider(private val key: String) : BaseCryptoProvider() {
-    private val keyBytes = deriveKey(key, 32)
+    private val keyBytes = deriveKey(key)
 
     override fun encrypt(data: ByteArray): ByteArray {
         val nonce = generateIV(8)
