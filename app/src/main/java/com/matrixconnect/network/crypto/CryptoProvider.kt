@@ -85,7 +85,7 @@ class ChaCha20CryptoProvider(private val key: String) : BaseCryptoProvider() {
             val nonce = generateIV(12)
             val cipher = Cipher.getInstance("ChaCha20-Poly1305")
             val keySpec = SecretKeySpec(keyBytes, "ChaCha20")
-            val paramSpec = javax.crypto.spec.ChaCha20ParameterSpec(nonce, 1)
+            val paramSpec = javax.crypto.spec.IvParameterSpec(nonce)
             
             cipher.init(Cipher.ENCRYPT_MODE, keySpec, paramSpec)
             val encrypted = cipher.doFinal(data)
@@ -105,7 +105,7 @@ class ChaCha20CryptoProvider(private val key: String) : BaseCryptoProvider() {
             
             val cipher = Cipher.getInstance("ChaCha20-Poly1305")
             val keySpec = SecretKeySpec(keyBytes, "ChaCha20")
-            val paramSpec = javax.crypto.spec.ChaCha20ParameterSpec(nonce, 1)
+            val paramSpec = javax.crypto.spec.IvParameterSpec(nonce)
             
             cipher.init(Cipher.DECRYPT_MODE, keySpec, paramSpec)
             cipher.doFinal(encryptedData)
@@ -121,7 +121,7 @@ class Salsa20CryptoProvider(private val key: String) : BaseCryptoProvider() {
     override fun encrypt(data: ByteArray): ByteArray {
         val nonce = generateIV(8)
         val keyStream = generateKeyStream(nonce, data.size)
-        val encrypted = ByteArray(data.size) { i -> data[i] xor keyStream[i] }
+        val encrypted = ByteArray(data.size) { i -> (data[i].toInt() xor keyStream[i].toInt()).toByte() }
         return nonce + encrypted
     }
 
@@ -132,7 +132,7 @@ class Salsa20CryptoProvider(private val key: String) : BaseCryptoProvider() {
         val encryptedData = data.copyOfRange(offset + 8, offset + length)
         val keyStream = generateKeyStream(nonce, encryptedData.size)
         
-        return ByteArray(encryptedData.size) { i -> encryptedData[i] xor keyStream[i] }
+        return ByteArray(encryptedData.size) { i -> (encryptedData[i].toInt() xor keyStream[i].toInt()).toByte() }
     }
 
     private fun generateKeyStream(nonce: ByteArray, length: Int): ByteArray {

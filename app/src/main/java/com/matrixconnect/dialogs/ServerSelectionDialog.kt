@@ -25,7 +25,7 @@ class ServerSelectionDialog : DialogFragment() {
 
             lifecycleScope.launch {
                 servers = withContext(Dispatchers.IO) {
-                    AppDatabase.getInstance().serverConfigDao().getAllServerConfigs()
+                    AppDatabase.getInstance(requireContext()).serverConfigDao().getAllServerConfigs()
                 }
 
                 val serverNames = servers.map { it.name }.toTypedArray()

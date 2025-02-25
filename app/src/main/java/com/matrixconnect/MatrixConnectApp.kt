@@ -22,7 +22,7 @@ class MatrixConnectApp : Application(), Configuration.Provider {
 
         // Initialize components
         PreferenceManager.init(this)
-        AppDatabase.init(this)
+        AppDatabase.getInstance(this)
         initNotificationChannel()
     }
 

@@ -59,7 +59,7 @@ class ConnectionService : Service() {
 
     private suspend fun startConnection(serverId: Long) {
         try {
-            val serverConfig = AppDatabase.getInstance().serverConfigDao()
+            val serverConfig = AppDatabase.getInstance(this@ConnectionService).serverConfigDao()
                 .getServerConfigById(serverId) ?: throw IllegalStateException("Server config not found")
             
             currentServerConfig = serverConfig
@@ -107,7 +107,7 @@ class ConnectionService : Service() {
                 connectionHistory?.let {
                     it.endTime = System.currentTimeMillis()
                     it.disconnectReason = "USER_INITIATED"
-                    AppDatabase.getInstance().connectionHistoryDao().insert(it)
+                    AppDatabase.getInstance(this@ConnectionService).connectionHistoryDao().insert(it)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -128,7 +128,7 @@ class ConnectionService : Service() {
                     is IOException -> "NETWORK_ERROR"
                     else -> "UNKNOWN_ERROR"
                 }
-                AppDatabase.getInstance().connectionHistoryDao().insert(it)
+                AppDatabase.getInstance(this@ConnectionService).connectionHistoryDao().insert(it)
             }
             updateNotification("Connection failed: ${error.message}")
             stopSelf()

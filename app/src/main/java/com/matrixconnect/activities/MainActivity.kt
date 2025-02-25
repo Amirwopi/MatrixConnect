@@ -12,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.matrixconnect.R
 import com.matrixconnect.data.entities.ServerConfig
 import com.matrixconnect.databinding.ActivityMainBinding
+import com.matrixconnect.dialogs.ServerSelectionDialog
 import com.matrixconnect.services.ConnectionService
 import com.matrixconnect.viewmodels.ConnectionStatus
 import com.matrixconnect.viewmodels.MainViewModel
@@ -39,18 +40,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.serverCard.setOnClickListener {
-            // TODO: Show server selection dialog
-            showServerSelectionDialog()
+            ServerSelectionDialog().show(supportFragmentManager, "ServerSelectionDialog")
         }
 
         binding.settingsButton.setOnClickListener {
-            // TODO: Launch settings activity
             startActivity(Intent(this, SettingsActivity::class.java))
         }
 
         binding.statsCard.setOnClickListener {
             // TODO: Show detailed statistics dialog
-            showConnectionStatsDialog()
         }
     }
 
@@ -149,13 +147,5 @@ class MainActivity : AppCompatActivity() {
 
     private fun showError(message: String) {
         Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
-    }
-
-    private fun showServerSelectionDialog() {
-        // TODO: Implement server selection dialog
-    }
-
-    private fun showConnectionStatsDialog() {
-        // TODO: Implement detailed statistics dialog
     }
 }
