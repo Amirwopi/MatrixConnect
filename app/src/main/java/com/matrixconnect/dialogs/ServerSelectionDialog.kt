@@ -19,35 +19,38 @@ class ServerSelectionDialog : DialogFragment() {
     private lateinit var servers: List<ServerConfig>
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return activity?.let { activity ->
-            val builder = AlertDialog.Builder(activity)
-            builder.setTitle(R.string.select_server)
+        val builder = AlertDialog.Builder(requireActivity())
+        builder.setTitle(R.string.select_server)
 
-            lifecycleScope.launch {
+        lifecycleScope.launch {
+            try {
                 servers = withContext(Dispatchers.IO) {
                     AppDatabase.getInstance(requireContext()).serverConfigDao().getAllServerConfigs()
                 }
 
-                val serverNames = servers.map { it.name }.toTypedArray()
-
-                builder.setItems(serverNames) { _, which ->
-                    val selectedServer = servers[which]
-                    viewModel.selectServer(selectedServer)
+                if (servers.isEmpty()) {
+                    builder.setMessage(R.string.no_servers_available)
+                    builder.setPositiveButton(R.string.ok) { _, _ -> dialog?.cancel() }
+                } else {
+                    val serverNames = servers.map { it.name }.toTypedArray()
+                    builder.setItems(serverNames) { _, which ->
+                        val selectedServer = servers[which]
+                        viewModel.selectServer(selectedServer)
+                    }
                 }
 
-                builder.setNegativeButton(R.string.cancel) { _, _ ->
-                    dialog?.cancel()
+                builder.setNegativeButton(R.string.cancel) { _, _ -> dialog?.cancel() }
+                builder.setNeutralButton(R.string.add_server) { _, _ -> 
+                    showAddServerMessage() 
                 }
 
-                builder.setNeutralButton(R.string.add_server) { _, _ ->
-                    // TODO: Implement add server functionality
-                    // For now, just show a message
-                    showAddServerMessage()
-                }
+            } catch (e: Exception) {
+                builder.setMessage(R.string.error_loading_servers)
+                builder.setPositiveButton(R.string.ok) { _, _ -> dialog?.cancel() }
             }
+        }
 
-            builder.create()
-        } ?: throw IllegalStateException("Activity cannot be null")
+        return builder.create()
     }
 
     private fun showAddServerMessage() {

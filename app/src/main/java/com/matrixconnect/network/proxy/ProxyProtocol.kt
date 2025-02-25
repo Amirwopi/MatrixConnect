@@ -30,9 +30,12 @@ abstract class BaseProxyProtocol : ProxyProtocol {
     
     override fun isConnected(): Boolean = state == ProxyState.CONNECTED
     
+    @Suppress("unused")
     protected fun ByteArray.toHexString(): String = joinToString("") { "%02x".format(it) }
     
+    @Suppress("unused")
     protected fun Int.toByteArray(): ByteArray = ByteBuffer.allocate(4).putInt(this).array()
     
+    @Suppress("unused")
     protected fun String.toByteArray(charset: String = "UTF-8"): ByteArray = toByteArray(charset(charset))
 }

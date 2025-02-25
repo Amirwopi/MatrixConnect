@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.matrixconnect"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.matrixconnect"
         minSdk = 21
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -45,6 +45,13 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
+    // Use Java toolchain instead of release option
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(17))
+        }
+    }
 }
 
 dependencies {
@@ -52,14 +59,12 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.activity.ktx)
-    implementation(libs.fragment.ktx)
     
     // Material Design
     implementation(libs.material)
     
     // Lifecycle components
     implementation(libs.lifecycle.viewmodel.ktx)
-    implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     
     // Room components
@@ -72,8 +77,6 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
-    implementation(libs.compose.foundation)
-    implementation(libs.compose.runtime)
     debugImplementation(libs.compose.ui.tooling)
     
     // WorkManager
@@ -87,10 +90,13 @@ dependencies {
     
     // Coroutines
     implementation(libs.coroutines.android)
-    implementation(libs.coroutines.core)
     
     // Testing
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext)
-    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(libs.androidx.test.ext) {
+        exclude(group = "com.google.testing.platform", module = "core-proto")
+    }
+    androidTestImplementation(libs.espresso.core) {
+        exclude(group = "com.google.testing.platform", module = "core-proto")
+    }
 }

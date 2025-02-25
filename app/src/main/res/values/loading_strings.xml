@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Loading Screen Strings -->
+    <string name="status_bar_time">9:41</string>
+    <string name="app_title">VPN MATRIX</string>
+    <string name="app_version">ورژن 1.0</string>
+    <string name="app_slogan">ساخته شده توسط گروه ماتریکس</string>
+    
+    <!-- Loading Step 1 Strings -->
+    <string name="step1_heading">برترین جواز برای اولین بار در ایران</string>
+    <string name="step1_subheading">مورد اعتماد بیش از 1 میلیون کاربر</string>
+    <string name="step1_next">بعدی</string>
+    <string name="step1_skip">رد کردن</string>
+</resources>

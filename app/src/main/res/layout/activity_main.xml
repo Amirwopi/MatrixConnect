@@ -16,19 +16,8 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:title="@string/app_name"
-            app:titleTextColor="?attr/colorOnPrimary">
-
-            <ImageButton
-                android:id="@+id/settingsButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="end"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/settings"
-                android:src="@drawable/ic_settings"
-                app:tint="?attr/colorOnPrimary" />
-
-        </com.google.android.material.appbar.MaterialToolbar>
+            app:titleTextColor="?attr/colorOnPrimary"
+            app:menu="@menu/menu_main" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -172,12 +161,20 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="16dp">
-
+                    <Button
+                        android:id="@+id/settingsButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Settings"
+                        android:layout_margin="16dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="8dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/statistics"
-                        android:textAppearance="?attr/textAppearanceHeadline6" />
+                        android:textAppearance="?attr/textAppearanceHeadline6"
+                        android:textColor="#546E7A" />
 
                     <GridLayout
                         android:layout_width="match_parent"
@@ -229,6 +226,7 @@
                             tools:text="00:15:30" />
 
                     </GridLayout>
+
 
                 </LinearLayout>
 

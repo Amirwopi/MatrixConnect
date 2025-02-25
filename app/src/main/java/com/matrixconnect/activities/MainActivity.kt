@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, SettingsActivity::class.java))
         }
 
+
         binding.statsCard.setOnClickListener {
             // TODO: Show detailed statistics dialog
         }
