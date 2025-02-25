@@ -1,173 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="393dp"
-    android:layout_height="852dp"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="#292929">
 
-    <!-- Status Bar -->
-    <LinearLayout
-        android:id="@+id/status_bar"
-        android:layout_width="393dp"
-        android:layout_height="54dp"
-        android:orientation="horizontal"
-        android:paddingHorizontal="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="9:41"
-            android:textColor="#FFFFFF"
-            android:textSize="17sp"
-            android:layout_marginStart="37dp"
-            android:layout_marginTop="18dp"/>
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:layout_marginTop="23dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="18dp"
-                android:layout_height="13dp"
-                android:src="@drawable/ic_cellular"/>
-
-            <ImageView
-                android:layout_width="18dp"
-                android:layout_height="13dp"
-                android:layout_marginStart="5dp"
-                android:src="@drawable/ic_wifi"/>
-
-            <LinearLayout
-                android:layout_width="27dp"
-                android:layout_height="13dp"
-                android:layout_marginStart="5dp"
-                android:background="@drawable/battery_background"
-                android:padding="2dp">
-
-                <View
-                    android:layout_width="21dp"
-                    android:layout_height="9dp"
-                    android:background="#FFFFFF"/>
-
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- Header -->
+    <!-- Menu and Notification Buttons -->
     <LinearLayout
         android:id="@+id/header"
-        android:layout_width="345dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/status_bar"
-        android:layout_marginTop="13dp"
-        android:layout_marginHorizontal="26dp"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="24dp">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <ImageButton
             android:id="@+id/btn_menu"
             android:layout_width="42dp"
             android:layout_height="42dp"
             android:background="@drawable/button_menu_background"
-            android:drawableCenter="@drawable/ic_menu"/>
+            android:src="@drawable/ic_menu"
+            android:padding="12dp"/>
 
         <Space
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="41dp"
-            android:src="@drawable/ic_logo"/>
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-
-        <androidx.appcompat.widget.AppCompatButton
+        <ImageButton
             android:id="@+id/btn_notification"
             android:layout_width="42dp"
             android:layout_height="42dp"
             android:background="@drawable/button_notification_background"
-            android:drawableCenter="@drawable/ic_notification"/>
-
+            android:paddingEnd="18dp"
+            android:paddingBottom="15dp"
+            android:src="@drawable/ic_notification" />
     </LinearLayout>
 
     <!-- World Map -->
     <ImageView
-        android:id="@+id/world_map"
-        android:layout_width="393dp"
-        android:layout_height="532dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@id/header"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/world_map_dark"/>
+        android:src="@drawable/world_map_dark"
+        android:scaleType="centerCrop"/>
 
     <!-- Location Card -->
     <LinearLayout
-        android:id="@+id/card_location"
-        android:layout_width="345dp"
+        android:id="@+id/location_card"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:layout_marginTop="32dp"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="153dp"
-        android:background="@drawable/card_location_background"
+        android:background="#0DFFFFFF"
         android:padding="12dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="30dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:rotation="180"
-            android:src="@drawable/ic_signal"/>
+            android:src="@drawable/ic_arrow_up" />
 
         <LinearLayout
-            android:layout_width="229dp"
-            android:layout_height="40dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_marginStart="16dp"
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="153dp"
-                android:layout_height="20dp"
-                android:text="بهترین منطقه"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/best_ct"
                 android:textColor="#14AE5C"
-                android:textSize="13sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:gravity="end"/>
+                android:layout_gravity="end"/>
 
             <TextView
-                android:layout_width="217dp"
-                android:layout_height="18dp"
-                android:text="سریعترین سرور"
-                android:textColor="#DBD6CE"
-                android:textSize="12sp"
-                android:gravity="center"/>
-
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/boost_server"
+                android:textColor="#78DAA6"
+                android:textSize="14sp"
+                android:layout_gravity="end"
+                android:layout_marginTop="4dp"/>
         </LinearLayout>
 
         <FrameLayout
-            android:layout_width="41dp"
-            android:layout_height="match_parent"
-            android:background="#D9D9D9"
-            android:layout_marginStart="16dp">
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="16dp"
+            android:background="#1AFFFFFF"
+            android:padding="8dp">
 
             <ImageView
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_global"/>
-
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@android:drawable/ic_dialog_map" />
         </FrameLayout>
-
     </LinearLayout>
 
     <!-- Change Location Button -->
@@ -175,9 +108,10 @@
         android:id="@+id/btn_change_location"
         android:layout_width="wrap_content"
         android:layout_height="36dp"
-        android:layout_marginTop="249dp"
+        android:layout_below="@id/location_card"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/button_change_location_background"
+        android:layout_marginTop="16dp"
+        android:background="#0DFFFFFF"
         android:paddingHorizontal="16dp"
         android:gravity="center"
         android:orientation="horizontal">
@@ -190,69 +124,65 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="تغییر منطقه"
-            android:textColor="#78DBA6"
+            android:text="@string/cheng_ct"
+            android:textColor="#78DAA6"
             android:textSize="16sp"
-            android:textStyle="bold"/>
-
+            android:layout_marginStart="8dp"/>
     </LinearLayout>
 
-    <!-- Connect Button -->
+    <!-- Connect Button with Ripple Effects -->
     <FrameLayout
-        android:id="@+id/btn_connect"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="478dp"
-        android:layout_marginStart="72dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/btn_change_location">
 
+        <!-- Ripple Effects -->
         <View
+            android:id="@+id/outer_ripple"
             android:layout_width="250dp"
             android:layout_height="250dp"
+            android:layout_gravity="center"
             android:background="@drawable/circle_wave_outer"
-            android:alpha="0.2"/>
+            android:alpha="0.1"
+            android:backgroundTint="#14AE5C"/>
 
         <View
+            android:id="@+id/inner_ripple"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
             android:background="@drawable/circle_wave_inner"
-            android:alpha="0.2"/>
+            android:alpha="0.2"
+            android:backgroundTint="#14AE5C"/>
 
+        <!-- Main Connect Button -->
         <FrameLayout
+            android:id="@+id/btn_connect"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:background="@drawable/circle_button">
 
             <ImageView
+                android:id="@+id/power_icon"
                 android:layout_width="60dp"
-                android:layout_height="66dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_power"/>
-
         </FrameLayout>
 
+        <!-- Connect Text -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="32dp"
+            android:text="@string/but_connect"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
     </FrameLayout>
 
-    <!-- Bottom Text -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="759dp"
-        android:layout_marginStart="12dp"
-        android:text="برای وصل شدن لمس کنید"
-        android:textColor="#FFFFFF"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:gravity="center"/>
-
-    <!-- Bottom Background -->
-    <View
-        android:layout_width="726dp"
-        android:layout_height="410dp"
-        android:layout_marginStart="-166dp"
-        android:layout_marginTop="603dp"
-        android:background="@drawable/bottom_background"/>
+    <!-- Bottom Curved Background -->
 
 </RelativeLayout>
